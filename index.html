@@ -69,7 +69,7 @@
         const materials = textures.map(textureUrl => new THREE.MeshBasicMaterial({ map: textureLoader.load(textureUrl) }));
 
         // Create a cube with textured faces and add it to the scene
-        const geometry = new THREE.BoxGeometry(1, 1, 1); // Reduced size by 50%
+        const geometry = new THREE.BoxGeometry(0.75, 0.75, 0.75); // Reduced size by 25%
         const cube = new THREE.Mesh(geometry, materials);
         scene.add(cube);
 
