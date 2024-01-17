@@ -32,6 +32,7 @@
 
         canvas {
             display: block;
+            margin: 20px auto; /* Adjusted margin for the canvas */
         }
     </style>
 </head>
@@ -49,7 +50,7 @@
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10);
         const renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement); // Moved this line to ensure correct rendering order
+        document.body.appendChild(renderer.domElement);
 
         // Define new textures for each face of the cube
         const textures = [
@@ -66,7 +67,7 @@
         const materials = textures.map(textureUrl => new THREE.MeshBasicMaterial({ map: textureLoader.load(textureUrl) }));
 
         // Create a cube with textured faces and add it to the scene
-        const geometry = new THREE.BoxGeometry(1, 1, 1); // Reduced size by half
+        const geometry = new THREE.BoxGeometry(1, 1, 1); // Reduced size by 50%
         const cube = new THREE.Mesh(geometry, materials);
         scene.add(cube);
 
