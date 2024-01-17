@@ -8,6 +8,7 @@
     <style>
         body {
             text-align: center;
+            margin: 0;
         }
 
         h1 {
@@ -27,13 +28,63 @@
         p {
             margin: 20px auto;
         }
+
+        canvas {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <h1>Click the ICON below to visit CBC DIGITAL</h1>
+    <h2>Click the ICON below to visit CBC DIGITAL</h2>
     <a href="https://sites.google.com/view/cbcdigitaly/home">
         <img src="https://i.imgur.com/mwpTHJj.png" alt="Your Icon" width="100" height="100">
     </a>
     <p>Welcome to CBC DIGITAL! Enjoy unlimited access to CBC Digital Lessons, and make Unlimited Income by sharing the app!</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script>
+        // Set up scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        document.body.appendChild(renderer.domElement);
+
+        // Define new textures for each face of the cube
+        const textures = [
+            'https://i.imgur.com/mwpTHJj.png',
+            'https://i.imgur.com/y0CwL9v.png',
+            'https://i.imgur.com/LamFmAN.png',
+            'https://i.imgur.com/asbHXSu.png',
+            'https://i.imgur.com/XIGngp7.png',
+            'https://i.imgur.com/SeAqYop.png'
+        ];
+
+        // Create textures from new images
+        const textureLoader = new THREE.TextureLoader();
+        const materials = textures.map(textureUrl => new THREE.MeshBasicMaterial({ map: textureLoader.load(textureUrl) }));
+
+        // Create a cube with textured faces and add it to the scene
+        const geometry = new THREE.BoxGeometry(2, 2, 2);
+        const cube = new THREE.Mesh(geometry, materials);
+        scene.add(cube);
+
+        // Set the camera position
+        camera.position.z = 3;
+
+        // Animation function to rotate the cube
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate the cube
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
